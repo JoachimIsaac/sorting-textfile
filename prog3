@@ -1,0 +1,190 @@
+//-------------------------------------------------------------------------------------------
+//
+//   Name:Joachim Isaac
+//
+//   Course: CMPS-1044-102, Fall 18, Dr.Tina Johnson
+//
+//   Purpose:
+//
+//
+//
+//
+//-------------------------------------------------------------------------------------------
+
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <fstream>
+using namespace std;
+
+ifstream infile;
+ofstream outfile;
+
+//infile.open("")
+outfile.open("Isaac_Joachim_prog3.txt");
+
+int const SIZE = 20;
+
+class Student{
+    
+private:
+    string student_firstname;
+    string student_lastname;
+    int student_grade;
+    
+    
+public:
+    
+   
+    
+    
+    // default constructor.
+    Student(){
+        student_firstname = "######";
+        student_lastname = "######";
+        student_grade = 0;
+    }
+    
+    
+    //parameterized consturctor.
+    Student(string first_name,string last_name, int grade){
+        
+        student_firstname = first_name;
+        student_lastname = last_name;
+        student_grade = 0;
+    }
+    
+    
+   string get_firstname() const{
+        
+        return student_firstname;
+    }
+    
+    
+    string get_lastname() const{
+       
+        return student_lastname;
+    }
+    
+    int get_grade(){
+    
+        
+        return student_grade;
+    }
+    
+    
+    
+    void set_firstname()const {
+     
+    
+        
+    }
+    
+    
+    
+    void set_lastname()const{
+    }
+    
+    
+    void set_grades()const{
+      
+        
+        
+        
+    }
+    
+    
+    double calculate_student_average() {
+        
+        //grade_object[i].get_grade()
+        
+        return 0;
+    }
+    
+    void sort_studentname(){
+    }
+    
+    void sort_student_average(int grades[]){
+        
+        
+        
+        
+        
+        }
+    
+    
+    void display_student_results(){
+        
+        //for(int i = 0; i < size )
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    void read_names(Student name_object[]){
+       
+        for(int i = 0; i < SIZE; i++){
+            infile >> student_firstname;
+            infile >>student_lastname;
+            name_object[i].get_firstname();
+            name_object[i].get_lastname();
+        }
+        
+        }
+
+    
+   
+    
+    void read_grades( Student grade_object[], int tests = 7){
+    
+        
+        for(int i = 0; i < tests ; i++){
+            
+            infile >> student_grade;
+            
+            grade_object[i].get_grade();
+            
+            
+            
+            
+           
+        }
+        
+       
+
+        
+
+    
+    
+    
+}
+
+
+};
+
+
+
+
+
+
+
+
+
+
+
+int main()
+{
+    
+    
+    
+    
+    
+    
+    
+
+    return 0;
+}
