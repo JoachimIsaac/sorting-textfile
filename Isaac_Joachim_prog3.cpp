@@ -70,10 +70,10 @@ public:
         return student_lastname;
     }
     
-    int get_grade(){
+    int get_grade( int num_inarray){
         
         
-        return student_grade ;
+        return num_inarray; //student_grades[num_inarray] ;
     }
     
     
@@ -96,6 +96,7 @@ public:
         
         
         student_grades[num_in_array] = grade;
+        
         /*
         if(student_grade > 100 || student_grade < 0){
             
@@ -185,7 +186,7 @@ public:
             
             for(int i = 0; i < NUM_OF_GRADES; i++){
              
-            outfile << stud_infoObject[j].get_grade() << " ";
+            outfile << stud_infoObject[j].get_grade(grades[i]) << " ";
             
         }
             
