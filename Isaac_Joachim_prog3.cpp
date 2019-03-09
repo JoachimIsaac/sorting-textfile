@@ -28,14 +28,16 @@ int const NUM_OF_GRADES = 7;
 class Student{
     
 private:
+   
     string student_firstname;
     string student_lastname;
     int student_grade;
+    int student_grades[NUM_OF_GRADES];
     
     
 public:
     
-   
+    
     
     
     // default constructor.
@@ -43,6 +45,7 @@ public:
         student_firstname = "######";
         student_lastname = "######";
         student_grade = 0;
+       
         
     }
     
@@ -56,70 +59,70 @@ public:
     }
     
     
-   string get_firstname() const{
+    string get_firstname() const{
         
         return student_firstname;
     }
     
     
     string get_lastname() const{
-       
+        
         return student_lastname;
     }
     
     int get_grade(){
-    
+        
         
         return student_grade ;
     }
     
     
     
-    void set_firstname(string firstname){
-        if(firstname.length() > 12 ||  firstname.length() <= 1 ){
-            
-            student_firstname = "#######";
-        }
-        else
+    void set_firstname(string &firstname){
+     
             student_firstname = firstname;
         
     }
     
     
     
-    void set_lastname(string lastname)const{
+    void set_lastname(string &lastname){
+        
+        student_lastname = lastname;
     }
     
     
-    void set_grades( int grade ){
-        if(grade > 100 || grade < 0){
+    void set_grades( int num_in_array,int grade ){
+        
+        
+        student_grades[num_in_array] = grade;
+        /*
+        if(student_grade > 100 || student_grade < 0){
             
             student_grade = 0;
         }
-        else
-            student_grade = grade;
         
-        
+           */
         
     }
     
     /*
-    double calculate_student_average(Student grade_object[], int grades[]) {
-        
-        int average = 0;
-        int total = 0;
-        
-        for(int x = 0; x < SIZE; x++){
-            for (int i = 0; i < 7; i++){
-                
-                total += grade_object[i].;
-                average = total / NUM_OF_GRADES;
-        }
-            
-        }
-       
-    }
-    */
+     double calculate_student_average(Student grade_object[], int grades[]) {
+     
+     int average = 0;
+     int total = 0;
+     
+     for(int x = 0; x < SIZE; x++){
+     for (int i = 0; i < 7; i++){
+     
+     total += grade_object[i].;
+     average = total / NUM_OF_GRADES;
+     }
+     
+     }
+     
+     }
+     */
     
     
     
@@ -134,7 +137,7 @@ public:
         
         
         
-        }
+    }
     
     
     void display_student_results(){
@@ -149,61 +152,49 @@ public:
     
     
     
-    void read_names(Student name_object[],string firstname, string lastname){
-       
-        for(int i = 0; i < SIZE; i++){
-            infile >> student_firstname;
-            infile >> student_lastname;
-            name_object[i].set_firstname(firstname);
-            name_object[i].set_lastname(lastname);
-        }
+   void read_student_info(Student stud_infoObject[],string &firstname,string &lastname,int grades[]){
         
-        }
-
-    
-   
-    
-    void read_grades( Student grade_object[], int grades[]){
-    
         
-        for(int i = 0; i < SIZE; i++){
-            for(int x = 0; x < NUM_OF_GRADES; x++){
-            infile >> grades[x];
-                
-            grade_object[i].set_grades(grades[x]);
-            
-            
-            
-            }
+       for(int j = 0; j < SIZE; j++){
            
-        }
+           infile >> firstname;
+           stud_infoObject[j].set_firstname(firstname);
+           infile >> lastname;
+           stud_infoObject[j].set_lastname(lastname);
+           for(int i = 0; i < NUM_OF_GRADES; i++){
+               infile >> grades[i];
+               stud_infoObject[j].set_grades(i,grades[i]);
+               
+               
+           }
+    
+       }
         
-       
+    }
+        
+    
+    
 
-        
-                
-                
+    void print_info(Student stud_infoObject[],string &firstname,string &lastname,int grades[]){
+        for(int j = 0; j < SIZE; j++){
+            
+           
+            outfile << stud_infoObject[j].get_firstname()<< " ";
+            
+            outfile << stud_infoObject[j].get_lastname() << " ";
+            
+            for(int i = 0; i < NUM_OF_GRADES; i++){
+             
+            outfile << stud_infoObject[j].get_grade() << " ";
             
         }
-
-    
-    
-
-
-
-
-
-void print_name(Student name_object[]){
-    for(int i = 0; i < SIZE; i++){
-        outfile << name_object[i].get_firstname() << " ";
-        outfile << name_object[i].get_lastname()<<"\n";
-        
-
+            
+            outfile <<"\n";
     }
+    
+    
+    
 }
-
-
-
 };
 
 
@@ -220,8 +211,8 @@ int main()
 {
     string firstname = "Joe";
     string lastname = "Brown";
-    Student names[SIZE];
-    Student gradesobj[SIZE];
+    Student Stud_info[SIZE];
+    
     int grades[NUM_OF_GRADES];
     int grade = 0;
     
@@ -231,22 +222,26 @@ int main()
     outfile.open("Isaac_Joachim_prog3.txt");
     
     
+    
+    if(infile){
+    
     Student  stud;
     
     
     Student stud2(firstname,lastname,grade);
-    stud.read_names(names, firstname, lastname);
-    stud.read_grades(gradesobj, grades);
-    stud.print_name(names);
+    stud.read_student_info(Stud_info, firstname, lastname, grades);
+    stud.print_info(Stud_info, firstname, lastname, grades);
   
     
     
     
     
     
+}
+    else
+        outfile << "could not open file";
     
     
     
-
     return 0;
 }
