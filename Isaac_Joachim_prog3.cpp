@@ -137,59 +137,68 @@ public:
     
      void calculate_student_average(Student stud_infoObject[], int averages[]) {
          
-       
-         
-         
-         
         for(int j = 0; j < SIZE; j++){
             
-                
-                 
-                 
-                 
-            
-             
              stud_infoObject[j].set_averages();
              
              outfile << stud_infoObject[j].get_firstname()<< " ";
              
              outfile << stud_infoObject[j].get_lastname() << " ";
              
-             outfile  <<  stud_infoObject[j].get_averages()<<" ";
-             
-             
-             
+             outfile  << setprecision(3)<< stud_infoObject[j].get_averages()<<" ";
+            
              outfile <<"\n";
              }
-             
-             
                  
              }
-             
-             
-         
-             
-             
-            
-         
-             
-         
-    
-    
-     
-    
-    
-     
-    
-    
     
     
     
     void sort_studentname(){
     }
     
-    void sort_student_average(Student stud_infoObject[],int grades[]){
+    void Bubble_sort_student_average(Student stud_infoObject[],int grades[]){
+       
+        Student temp;
+        bool swap;
         
+        do {
+            swap = false;
+            for (int count = 0; count < (19); count++){
+                stud_infoObject[count].set_averages();
+                if(stud_infoObject[count].get_averages() > stud_infoObject[count + 1].get_averages())
+                {
+                    temp = stud_infoObject[count];
+                    stud_infoObject[count] = stud_infoObject[count +1];
+                    stud_infoObject[count + 1] = temp;
+                    swap = true;
+                    
+                    
+                }
+                
+                
+            }
+            
+            
+        }while(swap);
+        
+        
+        
+        
+        for(int j = 0; j < SIZE; j++){
+            
+            
+            
+            outfile << stud_infoObject[j].get_firstname()<< " ";
+            
+            outfile << stud_infoObject[j].get_lastname() << " ";
+            
+            outfile  << setprecision(3)<< stud_infoObject[j].get_averages()<<" ";
+            
+            outfile <<"\n";
+        }
+        
+    
     }
     
     
@@ -287,6 +296,8 @@ int main()
     Student stud2(firstname,lastname,grade);
     stud.read_student_info(Stud_info, firstname,lastname, grades);
     //stud.print_info(Stud_info, firstname, lastname, grades);
+    
+    //stud.Bubble_sort_student_average(Stud_info, averages);
     stud.calculate_student_average(Stud_info,averages);
     
     
