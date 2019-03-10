@@ -33,6 +33,7 @@ private:
     string student_lastname;
     int student_grade;
     int student_grades[NUM_OF_GRADES];
+    int student_averages[SIZE];
 
     
     
@@ -81,6 +82,15 @@ public:
     
     
     
+    int get_averages(int numinarray){
+        
+        
+        
+        return student_averages[numinarray];
+    }
+    
+    
+    
     void set_firstname(string &firstname){
      
             student_firstname = firstname;
@@ -99,8 +109,15 @@ public:
         
         student_grades[gradenum] = grade;
         
-        
-        
+    }
+    
+    
+    void set_averages(int graden, int av){
+            
+            
+            
+            student_averages[graden] = av;
+        }
         /*
         if(student_grade > 100 || student_grade < 0){
             
@@ -109,54 +126,56 @@ public:
         
            */
         
-    }
     
     
-     void calculate_student_average(Student stud_infoObject[],int grades[], int averages[]) {
-     
-         int total = 0;
-         int totallyarr[NUM_OF_GRADES];
     
+     void calculate_student_average(Student stud_infoObject[], int averages[]) {
          
-         for(int j=0; j < SIZE; j ++){
-    for(int i= 0; i < NUM_OF_GRADES; i ++ ){
-    
-        total = stud_infoObject[j].get_grade(grades[i]);
-        totallyarr[j]= total;
-        total = 0; 
-        
-            
-           averages[j] = totallyarr[j]/NUM_OF_GRADES;
-        
-    
-    }
-            
-
-         }
+         int average = 0;
+         int total2 = 0;
          
-    // for(int x = 0; x < SIZE; x++){
-     //for (int i = 0; i < 7; i++){
-     
-     //total += grade_object[i].;
-     //average = total / NUM_OF_GRADES;
-
-         for(int t = 0; t < SIZE; t++){
-             
-             
-             outfile << stud_infoObject[t].get_firstname()<< " ";
-             
-             outfile << stud_infoObject[t].get_lastname() << " ";
-             
-            
+         
+         
+         for(int j = 0; j < SIZE; j++){
+             for(int i = 0; i < NUM_OF_GRADES; i++){
+                 total2 = 0;
+                  total2 += stud_infoObject[j].get_grade(i);
                  
-                 outfile <<stud_infoObject[t].get_grade(averages[t]) << " ";
-                  outfile <<"\n";
-      
-         }
+                 average = total2/NUM_OF_GRADES;
+                  averages[j] = average;
+                
+                 
+                 
+                 
+             }
+             
+             stud_infoObject[j].set_averages(j, averages[j]);
+             
+             outfile << stud_infoObject[j].get_firstname()<< " ";
+             
+             outfile << stud_infoObject[j].get_lastname() << " ";
+             
+             outfile  <<  stud_infoObject[j].get_averages(j)<<" ";
+             
+             
+             
+             outfile <<"\n";
+             }
+             
+             
+                 
+             }
+             
              
          
-         }
-     
+             
+             
+            
+         
+             
+         
+    
+    
      
     
     
@@ -170,10 +189,6 @@ public:
     }
     
     void sort_student_average(Student stud_infoObject[],int grades[]){
-        
-        
-        
-        
         
     }
     
@@ -217,16 +232,16 @@ public:
     void print_info(Student stud_infoObject[],string &firstname,string &lastname,int grades[]){
         for(int j = 0; j < SIZE; j++){
             
-           
+            
             outfile << stud_infoObject[j].get_firstname()<< " ";
             
             outfile << stud_infoObject[j].get_lastname() << " ";
             
             for(int i = 0; i < NUM_OF_GRADES; i++){
-             
-            outfile << stud_infoObject[j].get_grade(i) << " ";
-            
-        }
+                
+                outfile << stud_infoObject[j].get_grade(i) << " ";
+                
+            }
             
             outfile <<"\n";
     }
@@ -266,12 +281,13 @@ int main()
     if(infile){
     
     Student  stud;
+    Student stud3;
     
     
     Student stud2(firstname,lastname,grade);
     stud.read_student_info(Stud_info, firstname,lastname, grades);
-    stud.print_info(Stud_info, firstname, lastname, grades);
-    //stud.calculate_student_average(Stud_info,grades,averages);
+    //stud.print_info(Stud_info, firstname, lastname, grades);
+    stud.calculate_student_average(Stud_info,averages);
     
     
     
