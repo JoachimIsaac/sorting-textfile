@@ -161,7 +161,7 @@ public:
        
         Student temp;
         bool swap;
-        
+
         do {
             swap = false;
             for (int count = 0; count < (19); count++){
@@ -175,30 +175,111 @@ public:
                     
                     
                 }
-                
-                
             }
             
             
         }while(swap);
         
         
-        
-        
         for(int j = 0; j < SIZE; j++){
             
             
+            outfile << stud_infoObject[j].get_lastname() << " ";
             
             outfile << stud_infoObject[j].get_firstname()<< " ";
-            
-            outfile << stud_infoObject[j].get_lastname() << " ";
             
             outfile  << setprecision(3)<< stud_infoObject[j].get_averages()<<" ";
             
             outfile <<"\n";
         }
+    }
+    void Bubble_sort_names(Student stud_infoObject[],string firstname,string lastname){
         
+        Student temp;
+        bool swap;
+        
+        do {
+            swap = false;
+            for (int count = 0; count < (19); count++){
+                
+                stud_infoObject[count].set_averages();
+            if(stud_infoObject[count].get_lastname() > stud_infoObject[count+1].get_lastname())
+                {
+                    temp = stud_infoObject[count];
+                    stud_infoObject[count] = stud_infoObject[count +1];
+                    stud_infoObject[count + 1] = temp;
+                    swap = true;
+                    
+                    
+                }
+            }
+            
+            
+        }while(swap);
+        
+        
+        for(int j = 0; j < SIZE; j++){
+            
+            
+            outfile << stud_infoObject[j].get_lastname() << " ";
+            
+            outfile << stud_infoObject[j].get_firstname()<< " ";
+            
+            outfile  << setprecision(3)<< stud_infoObject[j].get_averages()<<" ";
+            
+            outfile <<"\n";
+        }
+    }
     
+    
+    void Insertion_sort_student_name(Student stud_infoObject[],string &firstname,string &lastname){
+        
+        
+ 
+        string key1,key2;
+        Student average1;
+        Student average2;
+        int i, j;
+        
+        
+        for (i = 1; i < SIZE; i++)
+        {
+            
+            
+            
+            key1 = stud_infoObject[i].get_lastname();
+            key2 = stud_infoObject[i].get_firstname();
+            j = i-1;
+            
+            /* Move elements of arr[0..i-1], that are
+             greater than key, to one position ahead
+             of their current position */
+            while (j >= 0 && stud_infoObject[i].get_lastname() > key1)
+                
+            {
+                stud_infoObject[j+1].get_lastname() = stud_infoObject[j].get_lastname();
+                stud_infoObject[j+1].get_firstname() = stud_infoObject[j].get_firstname();
+               
+                j = j-1;
+            }
+            stud_infoObject[j+1].get_lastname() = key1;
+            stud_infoObject[j+1].get_firstname()= key2;
+    
+        }
+        
+        
+        for(int t = 0; t < SIZE; t++){
+            
+            
+            outfile << stud_infoObject[t].get_lastname() << " ";
+            
+            outfile << stud_infoObject[t].get_firstname()<< " ";
+            
+            outfile  << setprecision(3)<< stud_infoObject[t].get_averages()<<" ";
+            
+            outfile <<"\n";
+        
+    }
     }
     
     
@@ -297,12 +378,14 @@ int main()
     stud.read_student_info(Stud_info, firstname,lastname, grades);
     //stud.print_info(Stud_info, firstname, lastname, grades);
     
-    //stud.Bubble_sort_student_average(Stud_info, averages);
-    stud.calculate_student_average(Stud_info,averages);
+   //stud.Bubble_sort_student_average(Stud_info, averages);
+        
     
+    //stud.calculate_student_average(Stud_info,averages);
     
+    //stud.Insertion_sort_student_name(Stud_info,firstname,lastname);
     
-    
+        stud.Bubble_sort_names(Stud_info, firstname, lastname);
     
 }
     else
