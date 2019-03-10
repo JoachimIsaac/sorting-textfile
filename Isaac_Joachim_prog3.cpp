@@ -33,7 +33,7 @@ private:
     string student_lastname;
     int student_grade;
     int student_grades[NUM_OF_GRADES];
-    int student_averages[SIZE];
+    double student_average;
 
     
     
@@ -48,6 +48,7 @@ public:
         student_firstname = "######";
         student_lastname = "######";
         student_grade = 0;
+        student_average = 0.0;
         
        
         
@@ -82,11 +83,11 @@ public:
     
     
     
-    int get_averages(int numinarray){
+    double get_averages(){
         
         
         
-        return student_averages[numinarray];
+        return student_average;
     }
     
     
@@ -112,11 +113,16 @@ public:
     }
     
     
-    void set_averages(int graden, int av){
+    void set_averages(){
+        int total =0;
+        for (int i =0; i < NUM_OF_GRADES; i++){
+            total += student_grades[i];
+            student_average = total/double(NUM_OF_GRADES);
+            
+        }
             
             
-            
-            student_averages[graden] = av;
+    
         }
         /*
         if(student_grade > 100 || student_grade < 0){
@@ -131,31 +137,25 @@ public:
     
      void calculate_student_average(Student stud_infoObject[], int averages[]) {
          
-         int average = 0;
-         int total2 = 0;
+       
          
          
          
-         for(int j = 0; j < SIZE; j++){
-             for(int i = 0; i < NUM_OF_GRADES; i++){
-                 total2 = 0;
-                  total2 += stud_infoObject[j].get_grade(i);
-                 
-                 average = total2/NUM_OF_GRADES;
-                  averages[j] = average;
+        for(int j = 0; j < SIZE; j++){
+            
                 
                  
                  
                  
-             }
+            
              
-             stud_infoObject[j].set_averages(j, averages[j]);
+             stud_infoObject[j].set_averages();
              
              outfile << stud_infoObject[j].get_firstname()<< " ";
              
              outfile << stud_infoObject[j].get_lastname() << " ";
              
-             outfile  <<  stud_infoObject[j].get_averages(j)<<" ";
+             outfile  <<  stud_infoObject[j].get_averages()<<" ";
              
              
              
