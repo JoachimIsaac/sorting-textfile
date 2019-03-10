@@ -232,39 +232,33 @@ public:
     }
     
     
-    void Insertion_sort_student_name(Student stud_infoObject[],string &firstname,string &lastname){
+    void selection_Sort_student_average(Student stud_infoObject[], int grades[]){
         
         
  
-        string key1,key2;
-        Student average1;
-        Student average2;
-        int i, j;
+        int startScan,minIndex,minValue1;
+        Student  minValue2;
         
-        
-        for (i = 1; i < SIZE; i++)
-        {
+        for(startScan = 0; startScan < (19); startScan++){
             
+            stud_infoObject[startScan].set_averages();
+            minIndex = startScan;
+            minValue1 = stud_infoObject[startScan].get_averages();
             
+            for(int index = startScan + 1; index < SIZE; index++){
+            if(stud_infoObject[index].get_averages() < stud_infoObject[startScan].get_averages()){
+                    stud_infoObject[startScan] = stud_infoObject[index];
+                    minIndex = index;
             
-            key1 = stud_infoObject[i].get_lastname();
-            key2 = stud_infoObject[i].get_firstname();
-            j = i-1;
-            
-            /* Move elements of arr[0..i-1], that are
-             greater than key, to one position ahead
-             of their current position */
-            while (j >= 0 && stud_infoObject[i].get_lastname() > key1)
+        }
+            else{
+                stud_infoObject[minIndex] = stud_infoObject[startScan].get_averages();
+                stud_infoObject[startScan] = stud_infoObject[startScan];
                 
-            {
-                stud_infoObject[j+1].get_lastname() = stud_infoObject[j].get_lastname();
-                stud_infoObject[j+1].get_firstname() = stud_infoObject[j].get_firstname();
-               
-                j = j-1;
             }
-            stud_infoObject[j+1].get_lastname() = key1;
-            stud_infoObject[j+1].get_firstname()= key2;
-    
+    }
+            
+            
         }
         
         
@@ -280,7 +274,10 @@ public:
             outfile <<"\n";
         
     }
-    }
+            }
+            
+            
+        
     
     
     void display_student_results(){
@@ -385,7 +382,9 @@ int main()
     
     //stud.Insertion_sort_student_name(Stud_info,firstname,lastname);
     
-        stud.Bubble_sort_names(Stud_info, firstname, lastname);
+    //stud.Bubble_sort_names(Stud_info, firstname, lastname);
+    
+        stud.selection_Sort_student_average(Stud_info, averages);
     
 }
     else
