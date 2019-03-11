@@ -232,7 +232,7 @@ public:
     }
     
     
-    void insertion_Sort_student_average(Student stud_infoObject[], int grades[]){
+    void selection_Sort_student_average(Student stud_infoObject[], int grades[]){
         
         
         for(int y = 0 ; y < SIZE;y++)
@@ -403,7 +403,7 @@ int main()
     
     //stud.Bubble_sort_names(Stud_info, firstname, lastname);
     
-        stud.insertion_Sort_student_average(Stud_info, averages);
+        stud.selection_Sort_student_average(Stud_info, averages);
     
 }
     else
