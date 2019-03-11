@@ -1,15 +1,20 @@
-//-------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
-//   Name:Joachim Isaac
+///  Name: Joachim Isaac (joe).
 //
-//   Course: CMPS-1044-102, Fall 18, Dr.Tina Johnson
+//   Course: CS 1063-202, Spring 19, Cerise, Wuthrich.
 //
-//   Purpose:
+//   Purpose: This program reads from a file the first-name, last-name and grades of 20 students.
+//            The program calculates each student's average and then sorts the students
+//            by last-name, and displays the student's last-name, first-name and then their average.
+//            After this is done the program then sorts the student's by averages in descending
+//            order and then it displays the student's last-name, first-name and average in
+//            descending order.
 //
 //
 //
-//
-//-------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
+
 
 #include <iostream>
 #include <iomanip>
@@ -21,17 +26,16 @@ ifstream infile;
 ofstream outfile;
 
 
-
-int const SIZE = 20;
+int const NUM_OF_STUDENTS = 20;
+//Golbal constant for number of students being read in.
 int const NUM_OF_GRADES = 7;
+//Global constant for the number of grades each student has.
 
 class Student{
     
 private:
-   
     string student_firstname;
     string student_lastname;
-    int student_grade;
     int student_grades[NUM_OF_GRADES];
     double student_average;
 
@@ -41,341 +45,192 @@ private:
 public:
     
     
-    
-    
-    // default constructor.
+    //Default constructor.
     Student(){
         student_firstname = "######";
         student_lastname = "######";
-        student_grade = 0;
         student_average = 0.0;
-        
-       
-        
     }
     
-    
-    //parameterized consturctor.
-    Student(string first_name,string last_name, int grades){
-        
+    //FIGURE OUT HOW TO USE THIS.0
+    //Parameterized consturctor.
+    Student(string first_name,string last_name, int average){
         student_firstname = first_name;
         student_lastname = last_name;
-        student_grade = grades;
+        student_average = average;
     }
     
-    
+    //Getter function for first-name.
     string get_firstname() const{
-        
         return student_firstname;
     }
     
-    
+    //Getter function for last-name.
     string get_lastname() const{
-        
         return student_lastname;
     }
     
-    int get_grade( int num_inarray){
-        
-        
-        return student_grades[num_inarray];
-    }
-    
-    
-    
+    //Getter function for student's average.
     double get_averages(){
-        
-        
-        
         return student_average;
     }
     
     
-    
-    void set_firstname(string &firstname){
-     
+    //Setter functiion for first-name.
+    void set_firstname(string firstname){
             student_firstname = firstname;
-        
     }
     
     
-    
-    void set_lastname(string &lastname){
-        
+    //Setter functiion for last-name.
+    void set_lastname(string lastname){
         student_lastname = lastname;
     }
     
     
-    void set_grades(int gradenum ,int grade ){
-        
-        student_grades[gradenum] = grade;
-        
+    
+    //Setter function that sets students' grades that are read through
+    //the read_student_info function.It takes in an integer that act's
+    //as the index value and another integer that is the grade that needs
+    //to be set into the student_grades array.
+    void set_grades(int grade_position_in_array, int grade){
+        student_grades[grade_position_in_array] = grade;
     }
     
     
+    //This function totals the grades stored in student_grades array
+    // and then divides them by the number of grades to calculate the
+    //students'average. Then sets the result in the student_average variable.
     void set_averages(){
         int total =0;
         for (int i =0; i < NUM_OF_GRADES; i++){
             total += student_grades[i];
             student_average = total/double(NUM_OF_GRADES);
-            
-        }
-            
-            
-    
-        }
-        /*
-        if(student_grade > 100 || student_grade < 0){
-            
-            student_grade = 0;
-        }
-        
-           */
-        
-    
-    
-    
-     void calculate_student_average(Student stud_infoObject[], int averages[]) {
-         
-        for(int j = 0; j < SIZE; j++){
-            
-             stud_infoObject[j].set_averages();
-             
-             outfile << stud_infoObject[j].get_firstname()<< " ";
-             
-             outfile << stud_infoObject[j].get_lastname() << " ";
-             
-             outfile  << setprecision(3)<< stud_infoObject[j].get_averages()<<" ";
-            
-             outfile <<"\n";
-             }
-                 
-             }
-    
-    
-    
-    void sort_studentname(){
-    }
-    
-    void Bubble_sort_student_average(Student stud_infoObject[],int grades[]){
-       
-        Student temp;
-        bool swap;
-
-        do {
-            swap = false;
-            for (int count = 0; count < (19); count++){
-                stud_infoObject[count].set_averages();
-                if(stud_infoObject[count].get_averages() > stud_infoObject[count + 1].get_averages())
-                {
-                    temp = stud_infoObject[count];
-                    stud_infoObject[count] = stud_infoObject[count +1];
-                    stud_infoObject[count + 1] = temp;
-                    swap = true;
-                    
-                    
-                }
             }
-            
-            
-        }while(swap);
-        
-        
-        for(int j = 0; j < SIZE; j++){
-            
-            
-            outfile << stud_infoObject[j].get_lastname() << " ";
-            
-            outfile << stud_infoObject[j].get_firstname()<< " ";
-            
-            outfile  << setprecision(3)<< stud_infoObject[j].get_averages()<<" ";
-            
-            outfile <<"\n";
-        }
-    }
-    void Bubble_sort_names(Student stud_infoObject[],string firstname,string lastname){
-        
-        Student temp;
-        bool swap;
-        
-        do {
-            swap = false;
-            for (int count = 0; count < (19); count++){
-                
-                stud_infoObject[count].set_averages();
-            if(stud_infoObject[count].get_lastname() > stud_infoObject[count+1].get_lastname())
-                {
-                    temp = stud_infoObject[count];
-                    stud_infoObject[count] = stud_infoObject[count +1];
-                    stud_infoObject[count + 1] = temp;
-                    swap = true;
-                    
-                    
-                }
-            }
-            
-            
-        }while(swap);
-        
-        
-        for(int j = 0; j < SIZE; j++){
-            
-            
-            outfile << stud_infoObject[j].get_lastname() << " ";
-            
-            outfile << stud_infoObject[j].get_firstname()<< " ";
-            
-            outfile  << setprecision(3)<< stud_infoObject[j].get_averages()<<" ";
-            
-            outfile <<"\n";
-        }
-    }
-    
-    
-    void selection_Sort_student_average(Student stud_infoObject[], int grades[]){
-        
-        
-        for(int y = 0 ; y < SIZE;y++)
-             stud_infoObject[y].set_averages();
-        
-        for(int i = 0; i < SIZE - 1; ++i){
-           
-            int min = i;
-            for(int j = i+1; j < SIZE; ++j)
-                if(stud_infoObject[j].get_averages() < stud_infoObject[min].get_averages())
-                    min = j;
-           swap( stud_infoObject[min], stud_infoObject[i]);
-            
-        }
-        
-     
-        
-        
-       /*
-        Student key;
-        int key1;
-        int i, j;
-        for(int s = 0; s<SIZE; s++){
-            
-            stud_infoObject[s].set_averages();
-        }
-        
-        for (i = 1; i < SIZE; i++)
-      {
-          key = stud_infoObject[i];
-            key1 = stud_infoObject[i].get_averages();
-            j = i-1;
-            
-             Move elements of arr[0..i-1], that are
-             greater than key, to one position ahead
-             of their current position
-            while (j >= 0 && stud_infoObject[j].get_averages() > key1)
-            {
-                stud_infoObject[j+1] = stud_infoObject[j];
-                j = j-1;
-            }
-            stud_infoObject[j+1] = key;
         }
     
-           */
-            
-            
-        
-        for(int t = 0; t < SIZE; t++){
-            
-            
-            outfile << stud_infoObject[t].get_lastname() << " ";
-            
-            outfile << stud_infoObject[t].get_firstname()<< " ";
-            
-            outfile  << setprecision(3)<< stud_infoObject[t].get_averages()<<" ";
-            
-            outfile <<"\n";
-        
-    }
-            
-    }
-            
-        
     
     
-    void display_student_results(){
+    // This function reads in the student's first-name,last-name and all their grades;
+    void read_student_info(Student student_info_Object [],string firstname,string lastname,int grades[]){
         
-        
-        
-        
-    }
-    
-    
-    
-    
-    
-    
-   void read_student_info(Student stud_infoObject[],string &firstname,string &lastname,int grades[]){
-        
-        
-       for(int j = 0; j < SIZE; j++){
-           
-           infile >> firstname;
-           stud_infoObject[j].set_firstname(firstname);
-           infile >> lastname;
-           stud_infoObject[j].set_lastname(lastname);
-           for(int i = 0; i < NUM_OF_GRADES; i++){
-               infile >> grades[i];
-               stud_infoObject[j].set_grades(i, grades[i]);
-               
-               
-               
-           }
-    
-       }
-        
-    }
-        
-    
-    
-
-    void print_info(Student stud_infoObject[],string &firstname,string &lastname,int grades[]){
-        for(int j = 0; j < SIZE; j++){
+        for(int j = 0; j < NUM_OF_STUDENTS; j++){
             
+            infile >> firstname;
+            //sets each first-name into object array each time it reads in that value.
+            student_info_Object[j].set_firstname(firstname);
             
-            outfile << stud_infoObject[j].get_firstname()<< " ";
+            infile >> lastname;
+            //sets each last-name into object array each time it reads in that value.
+            student_info_Object[j].set_lastname(lastname);
             
-            outfile << stud_infoObject[j].get_lastname() << " ";
             
             for(int i = 0; i < NUM_OF_GRADES; i++){
-                
-                outfile << stud_infoObject[j].get_grade(i) << " ";
+                infile >> grades[i];
+                student_info_Object[j].set_grades(i, grades[i]);
+                //This is where the set grades function is unitilized to
+                //set the grades in the student_grades array and then
+                //set that array within the student_info_Object array.
                 
             }
+        }
+    }
+    
+    //This is the bubble sort function that sorts the students by last name.
+    //After sorting it prints out the sorted result.
+    void Bubble_sort_names(Student student_info_Object[]){
+        
+        Student temp;
+        bool swap;
+        
+        do {
+            swap = false;
+            for (int count = 0; count < (NUM_OF_STUDENTS - 1); count++){
+                
+            student_info_Object[count].set_averages();//This sets all the averages into the object array
+                
+                
+            if(student_info_Object[count].get_lastname() > student_info_Object[count+1].get_lastname())
+                {//If the lastname in the first position based on index value (count)
+                //is more than the last-name in the next position base on index (count+1).
+                //Then the following is executed and this sorts the names in alphabetical order.
+    
+                    temp = student_info_Object[count];
+                    student_info_Object[count] = student_info_Object [count +1];
+                    student_info_Object[count + 1] = temp;
+                    swap = true;
+                    
+                }
+            }
+        }while(swap);
+        
+        
+        //This loop prints out the sorted result after the sorting has finished.
+        for(int j = 0; j < NUM_OF_STUDENTS; j++){
+            
+            outfile << student_info_Object[j].get_lastname() << " ";
+            
+            outfile << student_info_Object[j].get_firstname()<< " ";
+            
+            outfile  << setprecision(3)<< student_info_Object[j].get_averages()<<" ";
             
             outfile <<"\n";
+        }
     }
     
     
+    //This is the selection sort function that sorts the student's by average.
+    void selection_Sort_student_average(Student student_info_Object[]){
+        
+        //This loop sets all the averages into the student_info_Object array.
+        for(int y = 0 ; y < NUM_OF_STUDENTS;y++)
+        student_info_Object[y].set_averages();
+        
+        
+        for(int i = 0; i < NUM_OF_STUDENTS - 1; ++i){
+           
+            int min = i;
+            for(int j = i+1; j < NUM_OF_STUDENTS; ++j)
+                if(student_info_Object[j].get_averages() < student_info_Object[min].get_averages())
+                    min = j;
+            //If the average in position [j] of the student_info_object is less that the
+            //average in position [i] then a swap is done using swap function and two
+            //student_info_Object positions --- [min] and [i].
+           swap( student_info_Object[min], student_info_Object[i]);
+            
+        }
+    
+        
+        
+        //This loop prints out the sorted result after the sorting has finished.
+        for(int t = 0; t < NUM_OF_STUDENTS; t++){
+        
+            outfile << student_info_Object[t].get_lastname() << " ";
+            
+            outfile << student_info_Object[t].get_firstname()<< " ";
+            
+            outfile  << setprecision(3)<< student_info_Object[t].get_averages()<<" ";
+            
+            outfile <<"\n";
+        
+        }
     }
-    };
-
-
-
-
-
-
-
-
-
-
+    
+   };
+        
+    
 
 
 int main()
 {
     string firstname = "Joe";
     string lastname = "Brown";
-    Student Stud_info[SIZE];
+    
+    //This is an object array that is initialized to hold 20 students
+    Student Student_Info[NUM_OF_STUDENTS];
     
     int grades[NUM_OF_GRADES];
-    int averages[SIZE];
-    int grade = 0;
+    int average = 0;
     
     
     
@@ -385,17 +240,16 @@ int main()
     
     
     if(infile){
-    
+
     Student  stud;
-    Student stud3;
     
+    Student stud2(firstname,lastname,average);
     
-    Student stud2(firstname,lastname,grade);
-    stud.read_student_info(Stud_info, firstname,lastname, grades);
+    stud.read_student_info(Student_Info,firstname,lastname,grades);
     
-    stud.Bubble_sort_names(Stud_info, firstname, lastname);
+    stud.Bubble_sort_names(Student_Info);
     
-    stud.selection_Sort_student_average(Stud_info, averages);
+    //stud.selection_Sort_student_average(Student_Info);
     
 }
     else
@@ -404,4 +258,5 @@ int main()
     
     
     return 0;
+    
 }
