@@ -392,18 +392,10 @@ int main()
     
     Student stud2(firstname,lastname,grade);
     stud.read_student_info(Stud_info, firstname,lastname, grades);
-    //stud.print_info(Stud_info, firstname, lastname, grades);
     
-   //stud.Bubble_sort_student_average(Stud_info, averages);
-        
+    stud.Bubble_sort_names(Stud_info, firstname, lastname);
     
-    //stud.calculate_student_average(Stud_info,averages);
-    
-    //stud.Insertion_sort_student_name(Stud_info,firstname,lastname);
-    
-    //stud.Bubble_sort_names(Stud_info, firstname, lastname);
-    
-        stud.selection_Sort_student_average(Stud_info, averages);
+    stud.selection_Sort_student_average(Stud_info, averages);
     
 }
     else
