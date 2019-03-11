@@ -38,7 +38,7 @@ private:
     string student_lastname;
     int student_grades[NUM_OF_GRADES];
     double student_average;
-
+    
     
     
     
@@ -62,12 +62,12 @@ public:
     
     //Getter function for first-name.
     string get_firstname() const{
-        return student_firstname;
+        return " "+ student_firstname ;
     }
     
     //Getter function for last-name.
     string get_lastname() const{
-        return student_lastname;
+        return student_lastname + ",";
     }
     
     //Getter function for student's average.
@@ -78,7 +78,7 @@ public:
     
     //Setter functiion for first-name.
     void set_firstname(string firstname){
-            student_firstname = firstname;
+        student_firstname = firstname;
     }
     
     
@@ -106,8 +106,8 @@ public:
         for (int i =0; i < NUM_OF_GRADES; i++){
             total += student_grades[i];
             student_average = total/double(NUM_OF_GRADES);
-            }
         }
+    }
     
     
     
@@ -136,6 +136,7 @@ public:
         }
     }
     
+    
     //This is the bubble sort function that sorts the students by last name.
     //After sorting it prints out the sorted result.
     void Bubble_sort_names(Student student_info_Object[]){
@@ -147,14 +148,14 @@ public:
             swap = false;
             for (int count = 0; count < (NUM_OF_STUDENTS - 1); count++){
                 
-            student_info_Object[count].set_averages();//This sets all the averages into the object array
+                student_info_Object[count].set_averages();//This sets all the averages into the object array
                 
                 
-            if(student_info_Object[count].get_lastname() > student_info_Object[count+1].get_lastname())
+                if(student_info_Object[count].get_lastname() > student_info_Object[count+1].get_lastname())
                 {//If the lastname in the first position based on index value (count)
-                //is more than the last-name in the next position base on index (count+1).
-                //Then the following is executed and this sorts the names in alphabetical order.
-    
+                    //is more than the last-name in the next position base on index (count+1).
+                    //Then the following is executed and this sorts the names in alphabetical order.
+                    
                     temp = student_info_Object[count];
                     student_info_Object[count] = student_info_Object [count +1];
                     student_info_Object[count + 1] = temp;
@@ -168,31 +169,35 @@ public:
         //This loop prints out the sorted result after the sorting has finished.
         for(int j = 0; j < NUM_OF_STUDENTS; j++){
             
-        outfile<<setprecision(1)<<fixed;
-            outfile<<student_info_Object[j].get_lastname()<<", ";
-            outfile<<left<<setw(20)<<student_info_Object[j].get_firstname();
+            outfile<<setprecision(1)<<fixed;
+            outfile<<left;
+            outfile<<setw(10);
+            outfile<<student_info_Object[j].get_lastname();
+            outfile<<setw(10);
+            outfile<<student_info_Object[j].get_firstname();
+            outfile<<setw(10);
+            outfile<<student_info_Object[j].get_averages();
             
-           outfile<<right<<setw(5)<<student_info_Object[j].get_averages();
             
-           
             
             
             
             outfile <<"\n";
         }
+        
+         outfile<<"\n\n\n";
     }
-    
     
     //This is the selection sort function that sorts the student's by average.
     void selection_Sort_student_average(Student student_info_Object[]){
         
         //This loop sets all the averages into the student_info_Object array.
         for(int y = 0 ; y < NUM_OF_STUDENTS;y++)
-        student_info_Object[y].set_averages();
+            student_info_Object[y].set_averages();
         
         
         for(int i = 0; i < NUM_OF_STUDENTS - 1; ++i){
-           
+            
             int min = i;
             for(int j = i+1; j < NUM_OF_STUDENTS; ++j)
                 if(student_info_Object[j].get_averages() < student_info_Object[min].get_averages())
@@ -200,29 +205,32 @@ public:
             //If the average in position [j] of the student_info_object is less that the
             //average in position [i] then a swap is done using swap function and two
             //student_info_Object positions --- [min] and [i].
-           swap( student_info_Object[min], student_info_Object[i]);
+            swap( student_info_Object[min], student_info_Object[i]);
             
         }
-    
         
         
+        outfile<<"Sort by average:"<<"\n"<<"\n";
         //This loop prints out the sorted result after the sorting has finished.
         for(int t = 0; t < NUM_OF_STUDENTS; t++){
+            
+            outfile<<setprecision(1)<<fixed;
+            outfile<<left;
+            outfile<<setw(10);
+            outfile<<student_info_Object[t].get_lastname();
+            outfile<<setw(10);
+            outfile<<student_info_Object[t].get_firstname();
+            outfile<<setw(10);
+            outfile<<student_info_Object[t].get_averages();
         
-            outfile << student_info_Object[t].get_lastname() << " ";
-            
-            outfile << student_info_Object[t].get_firstname()<< " ";
-            
-            outfile  << setprecision(3)<< student_info_Object[t].get_averages()<<" ";
-            
             outfile <<"\n";
-        
         }
+         outfile<<"\n\n\n";
     }
-    
-   };
-        
-    
+   
+};
+
+
 
 
 int main()
@@ -244,21 +252,21 @@ int main()
     
     
     if(infile){
-
-    Student  stud;
-    
-    Student stud2(firstname,lastname,average);
-    
         
-    stud.read_student_info(Student_Info,firstname,lastname,grades);
-    
-    outfile << "Joachim Isaac"<<"\n"<<"\n";
+        Student  stud;
         
-    stud.Bubble_sort_names(Student_Info);
-    
-    //stud.selection_Sort_student_average(Student_Info);
-    
-}
+        Student stud2(firstname,lastname,average);
+        
+        
+        stud.read_student_info(Student_Info,firstname,lastname,grades);
+        
+        outfile << "Joachim Isaac"<<"\n"<<"\n";
+        
+        stud.Bubble_sort_names(Student_Info);
+        
+        stud.selection_Sort_student_average(Student_Info);
+        
+    }
     else
         outfile << "could not open file";
     
