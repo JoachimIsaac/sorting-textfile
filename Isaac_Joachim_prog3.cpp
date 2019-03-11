@@ -164,15 +164,19 @@ public:
             }
         }while(swap);
         
-        
+        outfile<<"Sorted by last name:"<<"\n"<<"\n";
         //This loop prints out the sorted result after the sorting has finished.
         for(int j = 0; j < NUM_OF_STUDENTS; j++){
             
-            outfile << student_info_Object[j].get_lastname() << " ";
+        outfile<<setprecision(1)<<fixed;
+            outfile<<student_info_Object[j].get_lastname()<<", ";
+            outfile<<left<<setw(20)<<student_info_Object[j].get_firstname();
             
-            outfile << student_info_Object[j].get_firstname()<< " ";
+           outfile<<right<<setw(5)<<student_info_Object[j].get_averages();
             
-            outfile  << setprecision(3)<< student_info_Object[j].get_averages()<<" ";
+           
+            
+            
             
             outfile <<"\n";
         }
@@ -245,8 +249,11 @@ int main()
     
     Student stud2(firstname,lastname,average);
     
+        
     stud.read_student_info(Student_Info,firstname,lastname,grades);
     
+    outfile << "Joachim Isaac"<<"\n"<<"\n";
+        
     stud.Bubble_sort_names(Student_Info);
     
     //stud.selection_Sort_student_average(Student_Info);
