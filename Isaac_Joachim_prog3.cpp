@@ -232,35 +232,54 @@ public:
     }
     
     
-    void selection_Sort_student_average(Student stud_infoObject[], int grades[]){
+    void insertion_Sort_student_average(Student stud_infoObject[], int grades[]){
         
         
- 
-        int startScan,minIndex,minValue1;
-        Student  minValue2;
+        for(int y = 0 ; y < SIZE;y++)
+             stud_infoObject[y].set_averages();
         
-        for(startScan = 0; startScan < (19); startScan++){
-            
-            stud_infoObject[startScan].set_averages();
-            minIndex = startScan;
-            minValue1 = stud_infoObject[startScan].get_averages();
-            
-            for(int index = startScan + 1; index < SIZE; index++){
-            if(stud_infoObject[index].get_averages() < stud_infoObject[startScan].get_averages()){
-                    stud_infoObject[startScan] = stud_infoObject[index];
-                    minIndex = index;
+        for(int i = 0; i < SIZE - 1; ++i){
+           
+            int min = i;
+            for(int j = i+1; j < SIZE; ++j)
+                if(stud_infoObject[j].get_averages() < stud_infoObject[min].get_averages())
+                    min = j;
+           swap( stud_infoObject[min], stud_infoObject[i]);
             
         }
-            else{
-                stud_infoObject[minIndex] = stud_infoObject[startScan].get_averages();
-                stud_infoObject[startScan] = stud_infoObject[startScan];
-                
+        
+     
+        
+        
+       /*
+        Student key;
+        int key1;
+        int i, j;
+        for(int s = 0; s<SIZE; s++){
+            
+            stud_infoObject[s].set_averages();
+        }
+        
+        for (i = 1; i < SIZE; i++)
+      {
+          key = stud_infoObject[i];
+            key1 = stud_infoObject[i].get_averages();
+            j = i-1;
+            
+             Move elements of arr[0..i-1], that are
+             greater than key, to one position ahead
+             of their current position
+            while (j >= 0 && stud_infoObject[j].get_averages() > key1)
+            {
+                stud_infoObject[j+1] = stud_infoObject[j];
+                j = j-1;
             }
-    }
-            
-            
+            stud_infoObject[j+1] = key;
         }
-        
+    
+           */
+            
+            
         
         for(int t = 0; t < SIZE; t++){
             
@@ -274,8 +293,8 @@ public:
             outfile <<"\n";
         
     }
-            }
             
+    }
             
         
     
@@ -384,7 +403,7 @@ int main()
     
     //stud.Bubble_sort_names(Stud_info, firstname, lastname);
     
-        stud.selection_Sort_student_average(Stud_info, averages);
+        stud.insertion_Sort_student_average(Stud_info, averages);
     
 }
     else
