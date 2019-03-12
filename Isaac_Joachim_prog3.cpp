@@ -1,19 +1,19 @@
-//--------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------
 //
-///  Name: Joachim Isaac (joe).
+// Name: Joachim Isaac (joe).
 //
-//   Course: CS 1063-202, Spring 19, Cerise, Wuthrich.
+// Course: CS 1063-202, Spring 19, Cerise, Wuthrich.
 //
-//   Purpose: This program reads from a file the first-name, last-name and grades of 20 students.
-//            The program calculates each student's average and then sorts the students
-//            by last-name, and displays the student's last-name, first-name and then their average.
+//Purpose:This program reads from a file the first-name, last-name and grades of 20 students.
+//         The program calculates each student's average and then sorts the students
+//        by last-name, and displays the student's last-name, first-name and then their average.
 //            After this is done the program then sorts the student's by averages in descending
 //            order and then it displays the student's last-name, first-name and average in
 //            descending order.
 //
 //
 //
-//--------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------
 
 
 #include <iostream>
@@ -52,7 +52,7 @@ public:
         student_average = 0.0;
     }
     
-    //FIGURE OUT HOW TO USE THIS.0
+    
     //Parameterized consturctor.
     Student(string first_name,string last_name, int average){
         student_firstname = first_name;
@@ -62,12 +62,13 @@ public:
     
     //Getter function for first-name.
     string get_firstname() const{
-        return " "+ student_firstname ;
+        return  student_firstname;
+        
     }
     
     //Getter function for last-name.
     string get_lastname() const{
-        return student_lastname + ",";
+        return student_lastname;
     }
     
     //Getter function for student's average.
@@ -100,7 +101,7 @@ public:
     
     //This function totals the grades stored in student_grades array
     // and then divides them by the number of grades to calculate the
-    //students'average. Then sets the result in the student_average variable.
+    //students'average. Then it sets the result in the student_average variable.
     void set_averages(){
         int total =0;
         for (int i =0; i < NUM_OF_GRADES; i++){
@@ -148,7 +149,8 @@ public:
             swap = false;
             for (int count = 0; count < (NUM_OF_STUDENTS - 1); count++){
                 
-                student_info_Object[count].set_averages();//This sets all the averages into the object array
+                //This sets all the averages into the object array
+                student_info_Object[count].set_averages();
                 
                 
                 if(student_info_Object[count].get_lastname() > student_info_Object[count+1].get_lastname())
@@ -170,12 +172,9 @@ public:
         for(int j = 0; j < NUM_OF_STUDENTS; j++){
             
             outfile<<setprecision(1)<<fixed;
-            outfile<<left;
-            outfile<<setw(10);
-            outfile<<student_info_Object[j].get_lastname();
-            outfile<<setw(10);
-            outfile<<student_info_Object[j].get_firstname();
-            outfile<<setw(10);
+            outfile<<setw(26)<<left;
+            outfile<<student_info_Object[j].get_lastname() + ", " +student_info_Object[j].get_firstname();
+            outfile<<setw(2)<<right;
             outfile<<student_info_Object[j].get_averages();
             
             
@@ -215,12 +214,9 @@ public:
         for(int t = 0; t < NUM_OF_STUDENTS; t++){
             
             outfile<<setprecision(1)<<fixed;
-            outfile<<left;
-            outfile<<setw(10);
-            outfile<<student_info_Object[t].get_lastname();
-            outfile<<setw(10);
-            outfile<<student_info_Object[t].get_firstname();
-            outfile<<setw(10);
+            outfile<<setw(26)<<left;
+            outfile<<student_info_Object[t].get_lastname() + ", " +student_info_Object[t].get_firstname();
+            outfile<<setw(2)<<right;
             outfile<<student_info_Object[t].get_averages();
         
             outfile <<"\n";
